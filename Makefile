@@ -1,4 +1,8 @@
-SOURCE	=	
+SOURCE	=	./source/terminus.c	\
+			./source/initialisation.c	\
+			./source/free.c	\
+			./source/events/event_handling.c	\
+			./source/volatile/volatile_handling.c
 
 CONVERTION	=	${SOURCE:.c=.o}
 

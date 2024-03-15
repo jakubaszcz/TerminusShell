@@ -18,12 +18,20 @@
 #include <time.h>
 #include <stdio.h>
 
-typedef enum buttonState_s {
+typedef enum buttonState_e {
     RELEASED,
     ACTIVE,
     INACTIVE,
     HOVERED,
 } buttonState_t;
+
+typedef struct environment_s {
+    char **environment;
+    char *homePath;
+    char *executionPath;
+} environment_t;
+
+struct terminus_s;
 
 typedef struct button_s {
     sfRectangleShape *rectangle;
@@ -31,15 +39,9 @@ typedef struct button_s {
     sfVector2f buttonSize;
     sfBool (*click)(sfRectangleShape *);
     sfBool (*hover)(sfRectangleShape *);
-    sfBool (*action)(sfRectangleShape *, terminus_t *);
-
+    sfBool (*action)(sfRectangleShape *, struct terminus_s *);
+    buttonState_t buttonState;
 } button_t;
-
-typedef struct environment_s {
-    char **environement;
-    char *homePath;
-    char *executionPath;
-} environment_t;
 
 typedef struct terminus_s {
     sfRenderWindow *window;
@@ -47,5 +49,5 @@ typedef struct terminus_s {
     sfVector2u windowSize;
     sfFont *font;
     environment_t *environment;
-    button_t *button;
+    button_t *buttons;
 } terminus_t;

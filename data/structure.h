@@ -13,10 +13,14 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
+#include <sys/types.h>
+#include <stddef.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 typedef enum buttonState_e {
     RELEASED,
@@ -26,12 +30,21 @@ typedef enum buttonState_e {
 } buttonState_t;
 
 typedef struct environment_s {
-    char **environment;
     char *homePath;
-    char *executionPath;
 } environment_t;
 
 struct terminus_s;
+
+typedef struct panel_s {
+    sfText *text;
+    sfText *info;
+    sfRectangleShape *rectangle;
+    sfVector2f buttonPosition;
+    sfVector2f buttonSize;
+    sfBool (*click)(sfRectangleShape *);
+    sfBool (*hover)(sfRectangleShape *);
+    sfBool (*action)(sfRectangleShape *, struct terminus_s *);
+} panel_t;
 
 typedef struct button_s {
     sfRectangleShape *rectangle;
@@ -44,10 +57,12 @@ typedef struct button_s {
 } button_t;
 
 typedef struct terminus_s {
+    char *input;
     sfRenderWindow *window;
     sfEvent event;
     sfVector2u windowSize;
     sfFont *font;
     environment_t *environment;
     button_t *buttons;
+    panel_t *panel;
 } terminus_t;

@@ -22,6 +22,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#define BUTTONS_SIZE 2
+
 typedef enum buttonState_e {
     RELEASED,
     ACTIVE,
@@ -34,6 +36,8 @@ typedef struct environment_s {
 } environment_t;
 
 struct terminus_s;
+struct panel_s;
+struct button_s;
 
 typedef struct panel_s {
     sfText *text;
@@ -41,18 +45,19 @@ typedef struct panel_s {
     sfRectangleShape *rectangle;
     sfVector2f buttonPosition;
     sfVector2f buttonSize;
-    sfBool (*click)(sfRectangleShape *);
-    sfBool (*hover)(sfRectangleShape *);
-    sfBool (*action)(sfRectangleShape *, struct terminus_s *);
+    sfBool (*click)(struct panel_s *, sfMouseButtonEvent *);
+    sfBool (*hover)(struct panel_s *, sfMouseMoveEvent *);
+    sfBool (*action)(struct terminus_s *);
 } panel_t;
 
 typedef struct button_s {
+    sfTexture *texture;
     sfRectangleShape *rectangle;
     sfVector2f buttonPosition;
     sfVector2f buttonSize;
-    sfBool (*click)(sfRectangleShape *);
-    sfBool (*hover)(sfRectangleShape *);
-    sfBool (*action)(sfRectangleShape *, struct terminus_s *);
+    sfBool (*click)(struct button_s *, sfMouseButtonEvent *);
+    sfBool (*hover)(struct button_s *, sfMouseMoveEvent *);
+    sfBool (*action)(struct terminus_s *);
     buttonState_t buttonState;
 } button_t;
 
@@ -63,6 +68,6 @@ typedef struct terminus_s {
     sfVector2u windowSize;
     sfFont *font;
     environment_t *environment;
-    button_t *buttons;
+    button_t *button;
     panel_t *panel;
 } terminus_t;

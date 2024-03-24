@@ -11,7 +11,6 @@ panel_t *panelHandling(terminus_t *terminus) {
     panel->info = sfText_create();
     panel->text = sfText_create();
     sfText_setFont(panel->info, terminus->font);
-    sfText_setString(panel->info, getcwd(NULL, 0));
     sfText_setCharacterSize(panel->info, 15);
     sfText_setFillColor(panel->info, sfColor_fromRGB(21,76,121));
     sfText_setPosition(panel->info, (sfVector2f){panel->buttonPosition.x, (panel->buttonPosition.y - 25.0f)});

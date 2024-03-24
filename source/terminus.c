@@ -5,16 +5,7 @@ void loop(terminus_t *terminus) {
         eventHandling(terminus);
         sfRenderWindow_clear(terminus->window, sfWhite);
         volatile_handling(terminus);
-
-        // Dessiner le rectangle
-        sfRenderWindow_drawRectangleShape(terminus->window, terminus->panel->rectangle, NULL);
-
-        // Dessiner le texte d'information
-        sfRenderWindow_drawText(terminus->window, terminus->panel->info, NULL);
-
-        // Dessiner le texte saisi
-        sfRenderWindow_drawText(terminus->window, terminus->panel->text, NULL);
-
+        drawing(terminus);
         sfRenderWindow_display(terminus->window);
     }
 }

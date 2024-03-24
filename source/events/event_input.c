@@ -4,7 +4,7 @@
 #include <string.h>
 
 void eventInput(terminus_t *terminus) {
-    size_t max_length = 10;
+    size_t max_length = 1000;
     if (terminus->input == NULL) {
         terminus->input = malloc(max_length * sizeof(char));
         if (terminus->input == NULL) {

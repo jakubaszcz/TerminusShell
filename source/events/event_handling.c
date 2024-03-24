@@ -7,6 +7,7 @@ void eventHandling(terminus_t *terminus) {
         if (terminus->event.type == sfEvtClosed) {
             sfRenderWindow_close(terminus->window);
         }
+        eventButton(terminus);
         eventInput(terminus);
     }
 }

@@ -12,6 +12,12 @@ void freeAll(terminus_t *terminus) {
             sfText_destroy(terminus->panel->text);
             sfRectangleShape_destroy(terminus->panel->rectangle);
         }
+        for (int i = 0; i < BUTTONS_SIZE; i++) {
+            if (&terminus->button[i] != NULL) {
+                sfTexture_destroy(terminus->button[i].texture);
+                sfRectangleShape_destroy(terminus->button[i].rectangle);
+            }
+        }
         if (terminus->window != NULL) {
             sfRenderWindow_destroy(terminus->window);
         }

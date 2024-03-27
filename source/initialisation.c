@@ -10,6 +10,8 @@ environment_t *initialisation_environment(char **array) {
         if ("HOME=/"[j] == '\0')
             environment->homePath = array[i] + 5;
     }
+    environment->currentPath = getcwd(NULL, 0);
+    environment->previousPath = NULL;
     return environment;
 }
 
@@ -21,9 +23,11 @@ terminus_t *initialisation(char **environment) {
     videoMode.width = 1920;
     videoMode.bitsPerPixel = 64;
     terminus->input = NULL;
+    terminus->close = sfFalse;
+    terminus->output = NULL;
     terminus->window = sfRenderWindow_create(videoMode, "Terminus Shell", sfResize | sfClose, NULL);
     terminus->event = event;
-    terminus->font = sfFont_createFromFile("fonts/space.otf");
+    terminus->font = sfFont_createFromFile("fonts/font.ttf");
     terminus->windowSize = sfRenderWindow_getSize(terminus->window);
     terminus->environment = initialisation_environment(environment);
     terminus->button = buttonHandling(terminus);

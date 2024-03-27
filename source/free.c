@@ -3,13 +3,11 @@
 void freeAll(terminus_t *terminus) {
     if (terminus != NULL) {
         if (terminus->environment != NULL) {
-            if (terminus->environment->homePath != NULL)
-                free(terminus->environment->homePath);
             free(terminus->environment);
         }
         if (terminus->panel != NULL) {
             sfText_destroy(terminus->panel->info);
-            sfText_destroy(terminus->panel->text);
+            sfText_destroy(terminus->panel->input);
             sfRectangleShape_destroy(terminus->panel->rectangle);
         }
         for (int i = 0; i < BUTTONS_SIZE; i++) {
@@ -25,6 +23,7 @@ void freeAll(terminus_t *terminus) {
             sfFont_destroy(terminus->font);
         }
         free(terminus->input);
+        free(terminus->output);
         free(terminus);
     }
 }

@@ -9,5 +9,7 @@ void drawing(terminus_t *terminus) {
     sfRenderWindow_drawRectangleShape(terminus->window, terminus->panel->rectangle, NULL);
     sfText_setString(terminus->panel->info, getcwd(NULL, 0));
     sfRenderWindow_drawText(terminus->window, terminus->panel->info, NULL);
-    sfRenderWindow_drawText(terminus->window, terminus->panel->text, NULL);
+    sfRenderWindow_drawText(terminus->window, terminus->panel->input, NULL);
+    sfRenderWindow_drawText(terminus->window, terminus->panel->input, NULL);
+    sfRenderWindow_drawText(terminus->window, terminus->panel->output, NULL);
 }

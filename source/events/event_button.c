@@ -16,7 +16,10 @@ void buttonClick(button_t *button, sfEvent event, terminus_t *terminus) {
     if (event.type == sfEvtMouseButtonPressed) {
         if (button->click(button, &mouse)) {
             button->buttonState = ACTIVE;
-            button->action(terminus);
+            if (button->action == NULL)
+                return;
+            else
+                button->action(terminus);
         } else {
             button->buttonState = RELEASED;
         }

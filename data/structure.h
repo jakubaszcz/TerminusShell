@@ -21,8 +21,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
-#define BUTTONS_SIZE 2
+#define BUTTONS_SIZE 3
 
 typedef enum buttonState_e {
     RELEASED,
@@ -33,6 +34,8 @@ typedef enum buttonState_e {
 
 typedef struct environment_s {
     char *homePath;
+    char *previousPath;
+    char *currentPath;
 } environment_t;
 
 struct terminus_s;
@@ -40,8 +43,9 @@ struct panel_s;
 struct button_s;
 
 typedef struct panel_s {
-    sfText *text;
+    sfText *input;
     sfText *info;
+    sfText *output;
     sfRectangleShape *rectangle;
     sfVector2f buttonPosition;
     sfVector2f buttonSize;
@@ -63,6 +67,8 @@ typedef struct button_s {
 
 typedef struct terminus_s {
     char *input;
+    char *output;
+    sfBool close;
     sfRenderWindow *window;
     sfEvent event;
     sfVector2u windowSize;

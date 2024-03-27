@@ -7,6 +7,8 @@ void loop(terminus_t *terminus) {
         volatile_handling(terminus);
         drawing(terminus);
         sfRenderWindow_display(terminus->window);
+        if (terminus->close)
+            break;
     }
 }
 

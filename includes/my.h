@@ -30,7 +30,9 @@
     sfBool buttonIsClick(button_t *button, sfMouseButtonEvent *mouse);
 
     //action button
-    void actionButtonClick(terminus_t *terminus);
+    void actionButtonHome(terminus_t *terminus);
+    void actionButtonExit(terminus_t *terminus);
+    void actionButtonPrevious(terminus_t *terminus);
 
 
 #endif
